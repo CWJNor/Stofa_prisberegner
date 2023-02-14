@@ -1,3 +1,8 @@
+if (!sessionStorage.getItem('pageLoaded')) {
+    sessionStorage.setItem('pageLoaded', true);
+    location.reload();
+}
+
 let names=["TV2","TV2Charlie","TV2Fri","TV2News","TV2Sport","TV2SportX","TV2Zulu","TV3","TV3Max","TV3 +","TV3Puls","TV3Sport","Kanal4","Kanal5","6eren","Canal9","DiscoveryChannel","DK4","NationalGeographic","3Sat","AlJazeera","Animalplanet","ARD","ARTE","BBCBrit","BBCEarth","BBCWorldNews","BlueHustler","Boomerang","CartoonNetwork","CBSReality","CNN","DisneyChannel","DisneyJunior","Euronews","Eurosport1","Eurosport2","ID-InvestegationDiscovery","Mezzo","MTV","MTV80s","MTV90s","MTVHits","NationalGeographicWild","NDR","Nick jr.","Nickelodeon","NRK1","ZDF","SVT1","Folketinget","NRK2","TV4 Sverige","SVT2","TV2Norge","ProSieben","Rai 1","See","TLC","VH1","V sport golf","Viasat Explore","Viasat History","Viasat Nature","DiscoveryScience","ESC/ESC1","Extreme Sport","HRT-TV1","MTVClub","MTVLive","Polonia","Sport Live"];
 names.sort();
 let prettynames=["TV2","TV2 Charlie","TV2 Fri","TV2 News","TV2 Sport","TV2 SportX","TV2 Zulu","TV3","TV3 MAX","TV3 +","TV3 Puls","TV3 Sport","Kanal 4","Kanal 5","6'eren","Canal 9","Discovery Channel","DK4","National Geographic","3Sat","Al Jazeera","Animal Planet","ARD","ARTE","BBC Brit","BBC Earth","BBC World News","Blue Hustler","Boomerang","Cartoon Network","CBS Reality","CNN","Disney Channel","Disney Junior","Euronews","Eurosport 1","Eurosport 2","ID-Investegation Discovery","Mezzo","MTV","MTV 80s","MTV 90s","MTV Hits","National Geographic Wild","NDR","Nick Jr.","Nickelodeon","NRK1","ZDF","SVT1","Folketinget","NRK2","TV4 Sverige","SVT2","TV2 Norge","ProSieben","Rai 1","See","TLC","VH1","V sport golf","Viasat Explore","Viasat History","Viasat Nature","Discovery Science","ESC/ESC1","Extreme Sport","HRT-TV1","MTV Club","MTV Live","Polonia","Sport Live"];
@@ -455,7 +460,7 @@ let NVAfunc=function(){
     let ikkem=[];
     let streamlist=[];
     let kanaler=[{TV2:1,TV2Charlie:1,TV2Fri:1,TV2News:1,TV2Sport:1,TV2SportX:1,TV2Zulu:1,TV3:1,TV3Max:1,"TV3 +":1,TV3Puls:1,TV3Sport:1,Kanal4:1,Kanal5:1,'6eren':1,Canal9:1,DiscoveryChannel:1,DK4:1,NationalGeographic:1,'3Sat':"Løsning ikke mulig",AlJazeera:"Løsning ikke mulig",Animalplanet:1,ARD:0,ARTE:"Løsning ikke mulig",BBCBrit:"Løsning ikke mulig",BBCEarth:"Løsning ikke mulig",BBCWorldNews:"Løsning ikke mulig",BlueHustler:"Løsning ikke mulig",Boomerang:1,CartoonNetwork:1,CBSReality:"Løsning ikke mulig",CNN:1,DisneyChannel:1,DisneyJunior:1,Euronews:"Løsning ikke mulig",Eurosport1:1,Eurosport2:1,"ID-InvestegationDiscovery":1,Mezzo:"Løsning ikke mulig",MTV:"Løsning ikke mulig",MTV80s:"Løsning ikke mulig",MTV90s:"Løsning ikke mulig",MTVHits:"Løsning ikke mulig",NationalGeographicWild:"Løsning ikke mulig",NDR:0,"Nick jr.":"Løsning ikke mulig",Nickelodeon:1,NRK1:0,ZDF:0,SVT1:0,Folketinget:"Løsning ikke mulig",NRK2:"Løsning ikke mulig","TV4 Sverige":0,SVT2:0,"TV2Norge":0,ProSieben:"Løsning ikke mulig","Rai 1":"Løsning ikke mulig",See:1,TLC:1,VH1:1,"V sport golf":"Løsning ikke mulig","Viasat Explore":"Løsning ikke mulig","Viasat History":"Løsning ikke mulig","Viasat Nature":"Løsning ikke mulig",DiscoveryScience:"Løsning ikke mulig","ESC/ESC1":"Løsning ikke mulig","Extreme Sport":"Løsning ikke mulig","HRT-TV1":"Løsning ikke mulig",MTVClub:"Løsning ikke mulig",MTVLive:"Løsning ikke mulig",Polonia:"Løsning ikke mulig","Sport Live":1}];
-    let stream=[{TV2PlayBasis:1,TV2PlayFavoritSport:"Løsning ikke mulig","TV2PlayFavoritSport (Uden reklamer)":"Løsning ikke mulig","Disney+":"Løsning ikke mulig",HBOMax:79,NetflixStandard:"Løsning ikke mulig",NetflixPremium:"Løsning ikke mulig","NordiskFilm+":49,CMore:"Løsning ikke mulig",SkyShowtime:"Løsning ikke mulig",NationalGeographicNow:"Løsning ikke mulig","Discovery+underholdning":1,"Discovery+Sport":"Løsning ikke mulig","Viaplay (Film og Serier)":1,"Viaplay Total":"Løsning ikke mulig"}];
+    let stream=[{TV2PlayBasis:1,TV2PlayFavoritSport:"Løsning ikke mulig","TV2PlayFavoritSport (Uden reklamer)":"Løsning ikke mulig","Disney+":"Løsning ikke mulig",HBOMax:79,NetflixStandard:"Løsning ikke mulig",NetflixPremium:"Løsning ikke mulig","NordiskFilm+":49,CMore:"Løsning ikke mulig",SkyShowtime:"Løsning ikke mulig",NationalGeographicNow:"Løsning ikke mulig","Discovery+underholdning":1,"Discovery+Sport":"Løsning ikke mulig","Viaplay (Film og Serier)":1,"Viaplay Total":1}];
     kanaler.sort();
     stream.sort();
     let NVA=0;
@@ -893,14 +898,8 @@ const btn = document.querySelector('#btn');
             checkboxes.forEach((checkbox) => {
                 values.push(checkbox.value);
             });
-            let NVF=NVFfunc();
             let SPL=SPLfunc();
             let SVS=SVSfunc();
-            let YouP=YouPfunc();
-            let NVO=NVOfunc();
-            let NVA=NVAfunc();
-            let AS=AllStreamFunc();
-            let AP=AllParaFunc();
 
             let minpris=Number.MAX_VALUE;
             let expr="([0-9]+) .*"
